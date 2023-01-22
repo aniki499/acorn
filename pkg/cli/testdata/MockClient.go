@@ -442,6 +442,8 @@ func (m *MockClient) ImageGet(ctx context.Context, name string) (*apiv1.Image, e
 			Tags:       []string{"index.docker.io/subdir/test:v1", "index.docker.io/subdir/test:v2"},
 			Digest:     "registry1234567",
 		}, nil
+	case "found-image-no-tag":
+		return &apiv1.Image{}, nil	
 	}
 	return nil, nil
 }
@@ -461,6 +463,8 @@ func (m *MockClient) ImageDelete(ctx context.Context, name string, opts *client.
 				Tags:       []string{"testtag1:latest", "testtag2:latest"},
 			}, nil
 		}
+	case "found-image-no-tag":
+		return &apiv1.Image{}, nil
 	}
 	return nil, nil
 }
